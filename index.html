@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d9488" />
+  <meta name="description" content="隐糖 SugarLens —— 看见看不见的糖。记录每日隐形糖摄入，换算成方糖，红绿灯预警并给出低糖替代方案。可交互 H5 原型。" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>隐糖 SugarLens · 每日隐形糖评估</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="app-bar">
+      <div class="brand">
+        <span class="brand-mark">隐</span>
+        <span class="brand-name">隐糖 <em>SugarLens</em></span>
+      </div>
+      <span class="demo-tag">可交互原型 · 游客免注册</span>
+    </header>
+
+    <main id="content" class="content" aria-live="polite"></main>
+
+    <nav class="tabbar" id="tabbar" aria-label="主导航">
+      <button class="tab active" data-action="tab" data-tab="today" aria-label="今日">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5M5 9.5V21h14V9.5"/></svg>
+        <span>今日</span>
+      </button>
+      <button class="tab" data-action="tab" data-tab="log" aria-label="记录">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        <span>记录</span>
+      </button>
+      <button class="tab" data-action="tab" data-tab="report" aria-label="报告">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16M7 16v-5M12 16V7M17 16v-8"/></svg>
+        <span>报告</span>
+      </button>
+      <button class="tab" data-action="tab" data-tab="me" aria-label="我的">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        <span>我的</span>
+      </button>
+    </nav>
+
+    <div id="overlay"></div>
+  </div>
+  <script src="app.js" defer></script>
+</body>
+</html>

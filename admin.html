@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d9488" />
+  <meta name="description" content="隐糖 SugarLens 数据后台 —— 游客匿名记录的聚合统计：访客规模、人均隐形糖摄入、7 日趋势与高糖来源排行。" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>隐糖 · 数据后台</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <header class="bar">
+    <div class="bar-inner">
+      <div class="brand">
+        <span class="brand-mark">隐</span>
+        <span class="brand-name">隐糖 <em>数据后台</em></span>
+      </div>
+      <div class="bar-actions">
+        <span class="pill" id="scope-chip" hidden>最近 7 天</span>
+        <button class="btn ghost" id="reload" type="button" hidden>刷新</button>
+        <a class="btn ghost" href="./index.html">返回前台</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="gate" id="gate">
+      <div class="card gate-card">
+        <h1 class="gate-title">管理员访问码</h1>
+        <p class="gate-sub">此页面只展示<strong>聚合统计</strong>：访客人数、人均糖摄入、排行与趋势。不含任何单个访客的具体记录。</p>
+        <form class="gate-form" id="gate-form" autocomplete="off">
+          <input class="code" id="code" type="password" inputmode="text" placeholder="输入访问码" aria-label="管理员访问码" />
+          <button class="btn primary" type="submit">进入</button>
+        </form>
+        <p class="gate-msg" id="gate-msg" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section id="board" hidden></section>
+  </main>
+
+  <script src="admin.js" defer></script>
+</body>
+</html>
