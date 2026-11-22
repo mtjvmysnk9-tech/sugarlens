@@ -20,7 +20,7 @@
 | `index.html` / `app.js` / `styles.css` | 访客端单页应用，记录保存在浏览器 `localStorage` |
 | `admin.html` / `admin.js` / `admin.css` | 管理端仪表盘，读取服务端聚合接口 |
 
-无构建步骤、无依赖包，纯静态。
+无构建步骤、无依赖包，纯静态。`img/` 下 22 张食物配图为 AI 生成的统一风格插画，压到 160px WebP（合计约 100KB），文件名与食物编号一一对应。
 
 ## 两处部署的差别
 
