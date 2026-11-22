@@ -56,6 +56,10 @@ const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&
 const fmt = (n) => (Number.isInteger(n) ? String(n) : n.toFixed(1));
 const cubes = (g) => Math.round((g / 4.5) * 10) / 10;
 const foodOf = (id) => FOODS.find((f) => f.id === id);
+// Thumbnails are named after the catalog id, so the food list never carries a
+// second path table that can drift out of sync with it.
+const foodThumb = (id, cls, size = 40) =>
+  `<span class="thumb" style="--sz:${size}px;--ring:var(--${cls})"><img src="img/${id}.webp" alt="" loading="lazy" decoding="async"></span>`;
 function traffic(sugar) {
   if (sugar <= 5) return { cls: "ok", label: "低糖" };
   if (sugar <= 15) return { cls: "warn", label: "中糖" };
@@ -253,7 +257,7 @@ function renderToday() {
       const f = foodOf(e.foodId); if (!f) return "";
       const tr = traffic(f.sugar);
       return `<div class="card item" data-action="open-detail" data-food="${f.id}" data-entry="${e.id}">
-        <span class="dot" style="background:var(--${tr.cls})"></span>
+        ${foodThumb(f.id, tr.cls)}
         <div class="grow"><div class="item-name">${f.name}</div><div class="item-sub">${f.serving} · ${e.time}</div></div>
         <span class="item-sugar ${tr.cls}">${f.sugar}g</span>
         <button class="icon-btn" data-action="remove-entry" data-entry="${e.id}" aria-label="删除记录">${icon("x", 14)}</button>
@@ -262,7 +266,7 @@ function renderToday() {
 
   const quick = ["milktea", "icetea", "yogurt"].map((id) => {
     const f = foodOf(id);
-    return `<button class="chip" data-action="add" data-add="${id}">+ ${f.name}</button>`;
+    return `<button class="chip" data-action="add" data-add="${id}">${foodThumb(id, traffic(f.sugar).cls, 26)} ${f.name}</button>`;
   }).join("");
 
   const insight = S.log.length > 0 ? `<div class="card insight">
@@ -305,7 +309,7 @@ function foodListHTML() {
   return filtered.map((f) => {
     const tr = traffic(f.sugar);
     return `<div class="card item" data-action="open-detail" data-food="${f.id}">
-      <span class="dot" style="background:var(--${tr.cls})"></span>
+      ${foodThumb(f.id, tr.cls)}
       <div class="grow"><div class="item-name">${f.name}</div><div class="item-sub">${f.serving} · ${tr.label}</div></div>
       <span class="item-sugar ${tr.cls}">${f.sugar}g</span>
       <button class="add-btn" data-action="add" data-add="${f.id}" aria-label="记录${f.name}">${icon("plus", 15)}</button>
@@ -437,7 +441,7 @@ function renderDetail() {
   <div class="sheet" role="dialog" aria-modal="true" aria-label="${f.name}">
     <div class="sheet-handle"></div>
     <div class="row between">
-      <div class="row" style="gap:8px"><span class="dot" style="background:var(--${tr.cls})"></span><span class="detail-name">${f.name}</span></div>
+      <div class="row" style="gap:11px">${foodThumb(f.id, tr.cls, 54)}<span class="detail-name">${f.name}</span></div>
       <button class="icon-btn" data-action="close-detail" aria-label="关闭">${icon("x", 17)}</button>
     </div>
     <div class="row" style="gap:6px;margin-top:9px"><span class="pill ${tr.cls}">${tr.label}</span><span class="pill">${f.cat}</span></div>
